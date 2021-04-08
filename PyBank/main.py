@@ -2,7 +2,10 @@ import os
 
 import csv
 
-csvpath = os.path.join('..', 'Resources', 'budget_data.csv')
+csvpath = os.path.join('', 'Resources', 'budget_data.csv')
+
+count = 0
+net_total = 0
 
 with open(csvpath) as csvfile:
 
@@ -17,4 +20,7 @@ with open(csvpath) as csvfile:
 
     # Read each row of data after the header
     for row in csvreader:
-        print(row)
+        count = count + 1
+        net_total = net_total + int(row[1])
+
+print ("net total: " + str(net_total))
