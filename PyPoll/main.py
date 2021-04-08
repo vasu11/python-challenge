@@ -6,8 +6,10 @@ csvpath = os.path.join('', 'Resources', 'election_data.csv')
 
 count = 0
 x = 0
+cand = 0
 candidates = []
 candidate_votes = []
+num_votes = 0
 
 with open(csvpath) as csvfile:
 
@@ -42,11 +44,33 @@ with open(csvpath) as csvfile:
             #    else:
                     #index = candidates.index(row[2])
                     # candidate_votes[index] = candidate_votes[index] + 1
-        if count == 10:
-            break
 
-print ("candidates " + str(len(candidates)))
-    
+file1 = open("Election_Results.txt", "a")
+file1.write("Election Results\n")
+file1.write("----------------------\n")
+file1.write("Total Votes: " + str(count) + "\n") 
+file1.write("----------------------\n")
+
+print ("Election Results")
+print ("----------------------")
+print ("Total Votes: " + str(count))
+print ("----------------------")
+for cand in candidates:
+    person = cand
+    votes_index = candidates.index(person)
+    if (candidate_votes[votes_index] > num_votes):
+        winner = person
+    num_votes = candidate_votes[votes_index]
+    percentage_votes = (num_votes / count) * 100
+    print (person + ": " + str(round(percentage_votes,3)) + "% (" + str(num_votes) + ")")
+    file1.write(person + ": " + str(round(percentage_votes,3)) + "% (" + str(num_votes) + ")\n")
+
+print ("----------------------")
+print ("Winner: " + winner)
+
+file1.write("----------------------\n")
+file1.write("Winner: " + winner)
+
         
 
 
